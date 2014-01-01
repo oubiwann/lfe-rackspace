@@ -166,6 +166,22 @@ In the presence of both defined env vars and cred files, env will allways be
 the default source of truth and files will only be used in the absence of
 defined env vars.
 
+You may also login using credentials stored in a config/ini file. To use this
+function, first create the ``~/.rax/providers.cfg`` config file with content
+like the following, but you your own details substituted:
+
+.. code:: ini
+
+[rackspace]
+username=alice
+apikey=abc123
+
+Then you can use the following call to login:
+
+.. code:: common-lisp
+
+    > (: lferax-identity login 'config)
+
 
 Login Response Data
 -------------------

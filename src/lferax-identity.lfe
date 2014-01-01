@@ -11,20 +11,12 @@
   well. As such, all strings should be converted to binary before being passed
   to Jiffy."
   ((username 'password password)
-   (json-wrap
-     (list 'passwordCredentials
-           (json-wrap-bin (list 'username username
-                                'password password)))))
+    (: openstack-identity build-creds username 'password password))
   ((username 'apikey apikey)
    (json-wrap
      (list 'RAX-KSKEY:apiKeyCredentials
            (json-wrap-bin (list 'username username
                                 'apiKey apikey))))))
-
-(defun get-password-auth-payload (username password)
-  (binary_to_list
-    (: jiffy encode
-      (json-wrap (list 'auth (build-creds username 'password password))))))
 
 (defun get-apikey-auth-payload (username apikey)
   (binary_to_list
@@ -33,15 +25,17 @@
 
 (defun get-auth-payload
   ((username 'apikey apikey) (get-apikey-auth-payload username apikey))
-  ((username 'password password) (get-password-auth-payload username password)))
+  ((username 'password password)
+   (: openstack-identity get-password-auth-payload username password)))
 
 (defun password-login (username password)
-  (: lferax-http post
+  (: openstack-identity authenticate
     (: lferax-const auth-url)
-    (get-auth-payload username 'password password)))
+    username
+    password))
 
 (defun apikey-login (username apikey)
-  (: lferax-http post
+  (: openstack-http post
     (: lferax-const auth-url)
     (get-auth-payload username 'apikey apikey)))
 
@@ -91,14 +85,18 @@
   ((username 'apikey apikey) (apikey-login username apikey))
   ((username 'password password) (password-login username password)))
 
-(defun login ()
-  ""
-  (login (get-username) 'apikey (get-apikey)))
-
 (defun login (mode)
   ""
   (cond ((=:= mode 'apikey) (login))
+        ((=:= mode 'config)
+          (let ((username (: lferax-config get-username))
+                (apikey (: lferax-config get-apikey)))
+            (login username 'apikey apikey)))
         ('true (login (get-username) 'password (get-password)))))
+
+(defun login ()
+  ""
+  (login (get-username) 'apikey (get-apikey)))
 
 (defun get-token (identity-response)
   (binary_to_list

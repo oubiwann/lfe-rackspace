@@ -36,6 +36,8 @@
 (defun username-env () '"RAX_USERNAME")
 (defun password-env () '"RAX_PASSWORD")
 (defun apikey-env () '"RAX_APIKEY")
+(defun config-file () (: filename join (list (dot-dir) '"providers.cfg")))
+(defun config-provider () '"rackspace")
 
 ;; Rackspace Cloud Services
 (defun services ()
