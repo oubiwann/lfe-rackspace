@@ -14,7 +14,7 @@
                               auth-token))))
 
 (defun request (method request-data)
-  (: lferax-util start-services)
+  (: openstack-util start-services)
   (let* ((http-options ())
          (options ()))
     (: httpc request method request-data http-options options)))

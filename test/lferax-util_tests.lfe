@@ -15,79 +15,10 @@
           (assert-exit 2))))
 
 
-(defun test-dict-data-1 ()
-  (list
-    'key-1 '"value 1"))
-
-(defun test-dict-data-2 ()
-  (list
-    'key-1 '"value 1"
-    'key-2 '"value 2"))
-
-(defun test-dict-data-3 ()
-  (list
-    'key-1 '"value 1"
-    'key-2 '"value 2"
-    'key-3 '"value 3"))
-
-(defun test-dict-2 ()
-  (: lferax-util dict (test-dict-data-2)))
-
-(defun partition-list_test ()
-  (let ((result (: lferax-util partition-list (test-dict-data-2))))
-    (assert-equal #((key-1 key-2) ("value 1" "value 2")) result)))
-
-(defun dict_test ()
-  (assert-equal '"value 1" `(: dict fetch 'key-1 ,(test-dict-2)))
-  (assert-equal '"value 2" `(: dict fetch 'key-2 ,(test-dict-2))))
-
-(defun json-wrap_test ()
-  (let ((result-1 (: lferax-util json-wrap (test-dict-data-1)))
-        (result-2 (: lferax-util json-wrap (test-dict-data-2)))
-        (result-3 (: lferax-util json-wrap (test-dict-data-3))))
-    (assert-equal #((#(key-1 "value 1"))) result-1)
-    (assert-equal #((#(key-1 "value 1") #(key-2 "value 2"))) result-2)
-    (assert-equal #((#(key-1 "value 1") #(key-2 "value 2") #(key-3 "value 3")))
-                  result-3)))
-
-(defun json-wrap-bin_test ()
-  (let ((result-1 (: lferax-util json-wrap-bin (test-dict-data-1)))
-        (result-2 (: lferax-util json-wrap-bin (test-dict-data-2)))
-        (result-3 (: lferax-util json-wrap-bin (test-dict-data-3))))
-    (assert-equal #((#(key-1 #B(118 97 108 117 101 32 49))))
-                  result-1)
-    (assert-equal #((#(key-1 #B(118 97 108 117 101 32 49))
-                     #(key-2 #B(118 97 108 117 101 32 50))))
-                  result-2)
-    (assert-equal #((#(key-1 #B(118 97 108 117 101 32 49))
-                     #(key-2 #B(118 97 108 117 101 32 50))
-                     #(key-3 #B(118 97 108 117 101 32 51))))
-                  result-3)))
-
-(defun is-home-dir?_test ()
-  (assert-not `(: lferax-util is-home-dir? '"~"))
-  (assert-not `(: lferax-util is-home-dir? '"/"))
-  (assert-not `(: lferax-util is-home-dir? '"~home/"))
-  (assert-not `(: lferax-util is-home-dir? '"/home"))
-  (assert `(: lferax-util is-home-dir? '"~/"))
-  (assert `(: lferax-util is-home-dir? '"~/user"))
-  (assert `(: lferax-util is-home-dir? '"~/user/more/path")))
-
-(defun expand-home-dir_test ()
-  (assert-equal '"/usr/local/bin"
-                `(: lferax-util expand-home-dir '"/usr/local/bin"))
-  (assert-equal '"/home/oubiwann"
-                `(: lferax-util expand-home-dir '"/home/oubiwann"))
-  ;; lfeunit has some issues with the following tests...
-  ;(let* ((tilde-dir '"~/my-data")
-  ;       (expanded (: lferax-util expand-home-dir tilde-dir)))
-  ;  (assert `(: lferax-util is-home-dir? ,tilde-dir))
-  ;  (assert-not `(: lferax-util is-home-dir? ,expanded)))
+; All the code that was in here was either moved into lfe-openstack or
+; lfe-utils. Keeping the file for now, in case we create some Rackspace-specific
+; utility functions.
+(defun noop ()
   )
 
-(defun strip_test ()
-  (assert-equal '"data" `(: lferax-util strip '"data\n"))
-  (assert-equal '"data" `(: lferax-util strip '"data\n\n"))
-  (assert-equal '"data" `(: lferax-util strip '"data   "))
-  (assert-equal '"data" `(: lferax-util strip '"data   \n   "))
-  (assert-equal '"data" `(: lferax-util strip '"data   \n   \n")))
+

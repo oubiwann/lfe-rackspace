@@ -5,7 +5,7 @@
 (defun get-service-catalog (identity-response)
   (: ej get
      #("access" "serviceCatalog")
-     (: lferax-util get-json-body identity-response)))
+     (: openstack-util get-json-body identity-response)))
 
 (defun get-service-endpoints (identity-response service-type)
   (: ej get

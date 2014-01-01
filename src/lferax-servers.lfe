@@ -1,7 +1,7 @@
 (defmodule lferax-servers
   (export all)
   (import
-    (from lferax-util
+    (from openstack-util
           (json-wrap 1)
           (json-wrap-bin 1))))
 
@@ -17,7 +17,7 @@
                      identity-response
                      region))
          (url (++ base-url url-path)))
-  (: lferax-util get-json-body
+  (: openstack-util get-json-body
     (: lferax-http get
        url
        (: lferax-identity get-token identity-response)))))

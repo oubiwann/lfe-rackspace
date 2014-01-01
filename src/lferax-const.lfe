@@ -1,8 +1,8 @@
 (defmodule lferax-const
   (export all)
   (import
-    (from lferax-util
-          (dict 1))))
+    (from lfe-utils
+          (pair-dict 1))))
 
 
 ;; Authentication Endpoints
@@ -31,13 +31,15 @@
 (defun username-file () (: filename join (list (dot-dir) '"username")))
 (defun password-file () (: filename join (list (dot-dir) '"password")))
 (defun apikey-file () (: filename join (list (dot-dir) '"apikey")))
+; Note that the following are used so as not to conflict with other
+; OpenStack-based deployments you may be auth'ing against
 (defun username-env () '"RAX_USERNAME")
 (defun password-env () '"RAX_PASSWORD")
 (defun apikey-env () '"RAX_APIKEY")
 
 ;; Rackspace Cloud Services
 (defun services ()
-  (dict
+  (pair-dict
     (list
       'servers-v2 '"cloudServersOpenStack"
       'servers-v1 '"cloudServers"
@@ -52,7 +54,7 @@
 
 ;; Rackspace Cloud Regions
 (defun regions ()
-  (dict
+  (pair-dict
     (list
       'syd '"SYD"
       'dfw '"DFW"
