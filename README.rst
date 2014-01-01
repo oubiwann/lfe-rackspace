@@ -172,9 +172,9 @@ like the following, but you your own details substituted:
 
 .. code:: ini
 
-[rackspace]
-username=alice
-apikey=abc123
+    [rackspace]
+    username=alice
+    apikey=abc123
 
 Then you can use the following call to login:
 
