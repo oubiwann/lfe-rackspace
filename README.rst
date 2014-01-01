@@ -31,9 +31,7 @@ This project depends upon the following, which installed to the ``deps``
 directory of this project when you run ``make deps``:
 
 * `LFE`_ (Lisp Flavored Erlang; needed only to compile)
-* `Jiffy`_ (JSON-parsing library)
-* `lfeunit`_ (needed only to run the unit tests)
-* `lfe-utils`_ (various convenience functions)
+* `lfe-openstack`_ (and all of its dependencies!)
 
 If you plan on installing lfe-rackspace system-wide, you will need to install
 these dependencies before using lfe-rackspace.
@@ -70,25 +68,27 @@ Which should give you output something like the following:
     ==> lfe-rackspace (eunit)
     ======================== EUnit ========================
     module 'lferax-util_tests'
-      lferax-util_tests: dict_test...[0.085 s] ok
-      lferax-util_tests: json-wrap_test...ok
-      lferax-util_tests: is-home-dir?_test...ok
-      lferax-util_tests: expand-home-dir_test...ok
-      lferax-util_tests: strip_test...ok
-      [done in 0.100 s]
+    module 'lferax-usemacros_tests'
+    module 'lferax-services_tests'
+    lferax-servers_tests: get-new-server-payload_test (module 'lferax-servers_tests')...[0.044 s] ok
     module 'lferax-identity_tests'
-      lferax-identity_tests: build-creds-password_test...[0.046 s] ok
+      lferax-identity_tests: build-creds-password_test...[0.021 s] ok
       lferax-identity_tests: build-creds-apikey_test...ok
-      [done in 0.051 s]
+      [done in 0.026 s]
+    module 'lferax-http_tests'
+      lferax-http_tests: get-default-headers_test...[0.044 s] ok
+      lferax-http_tests: get-auth-headers_test...ok
+      lferax-http_tests: get_test...[1.230 s] ok
+      [done in 1.283 s]
     module 'lferax-const_tests'
-      lferax-const_tests: auth-url_test...[0.052 s] ok
+      lferax-const_tests: auth-url_test...ok
       lferax-const_tests: services_test...ok
       lferax-const_tests: regions_test...ok
-      lferax-const_tests: files_test...ok
+      lferax-const_tests: files_test...
       lferax-const_tests: env_test...ok
-      [done in 0.067 s]
+      [done in 0.014 s]
     =======================================================
-      All 12 tests passed.
+      All 11 tests passed.
 
 
 Usage
@@ -424,6 +424,4 @@ TBD
 .. _Clojure bindings: https://github.com/oubiwann/clj-rackspace
 .. _rebar: https://github.com/rebar/rebar
 .. _LFE: https://github.com/rvirding/lfe
-.. _Jiffy: https://github.com/davisp/jiffy
-.. _lfeunit: https://github.com/lfe/lfeunit
-.. _lfe-utils: https://github.com/lfe/lfe-utils
+.. _lfe-openstack: https://github.com/oubiwann/lfe-openstack
