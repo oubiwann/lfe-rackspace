@@ -14,7 +14,7 @@ LFE_UTILS_DIR = $(DEPS)/lfe-utils
 LFEUNIT_DIR = $(DEPS)/lfeunit
 JIFFY_DIR = $(DEPS)/jiffy
 EJ_DIR = $(DEPS)/ej
-LFE_OPENSTACK_DIR = $(DEPS)/lfe-openstack
+LFE_OPENSTACK_DIR = $(DEPS)/openstack
 # Note that ERL_LIBS is for running this project in development and that
 # ERL_LIB is for installation.
 ERL_LIBS1 = $(LFE_DIR):$(LFE_UTILS_DIR):$(LFEUNIT_DIR):$(JIFFY_DIR):$(EJ_DIR)
