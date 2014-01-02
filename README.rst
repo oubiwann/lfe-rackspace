@@ -214,7 +214,7 @@ With the response data from a successful login, one may then get one's token:
 
 .. code:: common-lisp
 
-    (set token (: lferax-identity get-token auth-response))
+    (set token (: openstack-identity get-token auth-response))
 
 
 Tentant ID
@@ -226,7 +226,7 @@ further calls to the Rackspace Cloud APIs. You get it in the same manner:
 
 .. code:: common-lisp
 
-    (set tenant-id (: lferax-identity get-tenant-id auth-response))
+    (set tenant-id (: openstack-identity get-tenant-id auth-response))
 
 
 
@@ -237,8 +237,8 @@ Simiarly, after login, you will be able to extract your user id:
 
 .. code:: common-lisp
 
-    (set user-id (: lferax-identity get-user-id auth-response))
-    (set user-name (: lferax-identity get-user-name auth-response))
+    (set user-id (: openstack-identity get-user-id auth-response))
+    (set user-name (: openstack-identity get-user-name auth-response))
 
 
 

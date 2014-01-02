@@ -98,30 +98,4 @@
   ""
   (login (get-username) 'apikey (get-apikey)))
 
-(defun get-token (identity-response)
-  (binary_to_list
-    (: ej get
-       #("access" "token" "id")
-       (: openstack-util get-json-body identity-response))))
-
-(defun get-tenant-id (identity-response)
-  (binary_to_list
-    (: ej get
-       #("access" "token" "tenant" "id")
-       (: openstack-util get-json-body identity-response))))
-
-(defun get-user-id (identity-response)
-  (binary_to_list
-    (: ej get
-       #("access" "user" "id")
-       (: openstack-util get-json-body identity-response))))
-
-(defun get-user-name (identity-response)
-  (binary_to_list
-    (: ej get
-       #("access" "user" "name")
-       (: openstack-util get-json-body identity-response))))
-
-
-
 
