@@ -18,7 +18,7 @@
                      region))
          (url (++ base-url url-path)))
   (: openstack-util get-json-body
-    (: lferax-http get
+    (: openstack-http get
        url
        (: lferax-identity get-token identity-response)))))
 
@@ -62,7 +62,7 @@
   (let ((base-url (: lferax-services get-cloud-servers-v2-url
                     identity-response
                     region)))
-    (: lferax-http post
+    (: openstack-http post
       (++ base-url '"/servers")
       (get-new-server-encoded-payload server-name image-id flavor-id)
       (: lferax-identity get-token identity-response))))
@@ -71,7 +71,7 @@
   (let ((base-url (: lferax-services get-cloud-servers-v2-url
                      identity-response
                      region)))
-    (: lferax-http get
+    (: openstack-http get
       (++ base-url '"/servers/detail")
       region
       (: lferax-identity get-token identity-response))))

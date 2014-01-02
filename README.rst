@@ -70,25 +70,20 @@ Which should give you output something like the following:
     module 'lferax-util_tests'
     module 'lferax-usemacros_tests'
     module 'lferax-services_tests'
-    lferax-servers_tests: get-new-server-payload_test (module 'lferax-servers_tests')...[0.044 s] ok
+    lferax-servers_tests: get-new-server-payload_test (module 'lferax-servers_tests')...[0.079 s] ok
     module 'lferax-identity_tests'
-      lferax-identity_tests: build-creds-password_test...[0.021 s] ok
+      lferax-identity_tests: build-creds-password_test...[0.028 s] ok
       lferax-identity_tests: build-creds-apikey_test...ok
-      [done in 0.026 s]
-    module 'lferax-http_tests'
-      lferax-http_tests: get-default-headers_test...[0.044 s] ok
-      lferax-http_tests: get-auth-headers_test...ok
-      lferax-http_tests: get_test...[1.230 s] ok
-      [done in 1.283 s]
+      [done in 0.033 s]
     module 'lferax-const_tests'
-      lferax-const_tests: auth-url_test...ok
+      lferax-const_tests: auth-url_test...[0.020 s] ok
       lferax-const_tests: services_test...ok
       lferax-const_tests: regions_test...ok
-      lferax-const_tests: files_test...
+      lferax-const_tests: files_test...ok
       lferax-const_tests: env_test...ok
-      [done in 0.014 s]
+      [done in 0.035 s]
     =======================================================
-      All 11 tests passed.
+      All 8 tests passed.
 
 
 Usage
