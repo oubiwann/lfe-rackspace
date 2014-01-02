@@ -303,7 +303,7 @@ keying off the appropriate atom for the service that you need, e.g.:
 .. code:: common-lisp
 
     (set service (: dict fetch 'servers-v2 (: lferax-const services)))
-    (: lferax-services get-service-endpoints response service)
+    (: openstack-services get-service-endpoints auth-response service)
 
 We provide some alias functions for commonly used service endpoints, e.g.:
 
@@ -394,11 +394,11 @@ Creating a Server
     (set token (: lferax-identity get-token auth-response))
     (set region (: dict fetch 'dfw (: lferax-const regions)))
     (set flavors-list (: lferax-servers get-flavors-list auth-response region))
-    (set flavor-id (: lferax-servers get-flavor-id
+    (set flavor-id (: lferax-servers get-id
                      '"30 GB Performance"
                      flavors-list))
     (set images-list (: lferax-servers get-images-list auth-response region))
-    (set image-id (: lferax-servers get-image-id
+    (set image-id (: lferax-servers get-id
                     '"Ubuntu 12.04 LTS (Precise Pangolin)"
                     images-list))
     ; new calls
@@ -409,6 +409,7 @@ Creating a Server
                            server-name
                            image-id
                            flavor-id))
+
 
 Getting a List of Servers
 -------------------------
