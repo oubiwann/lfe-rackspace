@@ -71,8 +71,8 @@
   (let ((base-url (: lferax-services get-cloud-servers-v2-url
                      identity-response
                      region)))
-    (: openstack-http get
-      (++ base-url '"/servers/detail")
-      region
-      (: openstack-identity get-token identity-response))))
+    (: openstack-util get-json-body
+      (: openstack-http get
+        (++ base-url '"/servers/detail")
+        (: openstack-identity get-token identity-response)))))
 
